@@ -1,22 +1,50 @@
 // We are using an open API! No key needed!
-function getBreweryData() {
-    const searchQuery = document.getElementById('brewery-serach-text').value;
-    
+function getBreweryDataByName(searchQuery) {
     fetch(`https://api.openbrewerydb.org/breweries/search?query=${searchQuery}`)
         .then(response => response.json())
         .then((json) => {
-            console.log(json);
             json.forEach((brewery, i) => {
                 const breweryText = {
                     name: brewery.name,
                     state: brewery.state,
                     website_url: brewery.website_url,
                 }
-                console.log(brewery.name);
                 displayResults(breweryText);
             })
         });
     
+}
+
+function getBreweryDataByCity(searchQuery) {
+    fetch(`https://api.openbrewerydb.org/breweries?by_city=${searchQuery}`)
+        .then(response => response.json())
+        .then((json) => {
+            json.forEach((brewery, i) => {
+                const breweryText = {
+                    name: brewery.name,
+                    state: brewery.state,
+                    website_url: brewery.website_url,
+                }
+                displayResults(breweryText);
+            })
+        });
+}
+
+function getBreweryData() {
+    const searchQuery = document.getElementById('brewery-serach-text').value;
+    if (!searchQuery) {
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.innerText = "Please provide a search param"; 
+    } else {
+        document.getElementById('error-message').innerHTML = "";
+    }
+    const searchParam = document.querySelector('input[name="search-type"]:checked').value;
+    document.getElementById('results').innerHTML = "";
+    if (searchParam === "name") {
+        getBreweryDataByName(searchQuery);
+    } else {
+        getBreweryDataByCity(searchQuery);
+    }
 }
 
 function displayResults(breweryText) {

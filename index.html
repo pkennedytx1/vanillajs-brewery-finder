@@ -32,6 +32,11 @@
                 <input id="brewery-serach-text" type="text" class="form-control" placeholder="Brewery Name" aria-label="search brewery" aria-describedby="button-addon2">
                 <button onclick="getBreweryData()" id="search-brewery-button" class="btn btn-outline-secondary" type="button" id="button-addon2">Search Brewery</button>
             </div>
+            <p id="error-message" style="color: red;"></p>
+            <input type="radio" checked="true" id="html" name="search-type" value="name">
+            <label for="html">Search By Name</label><br>
+            <input type="radio" id="css" name="search-type" value="city">
+            <label for="css">Search By City</label><br>
             <div id="results"></div>
         </div>
         <script src="./app.js" async defer></script>
