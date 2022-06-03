@@ -1,4 +1,21 @@
-#brewery-search-bar {
+.search-input {
+    position: relative;
     max-width: 500px;
     margin: 20px auto;
+}
+
+#error-message {
+    color: red;
+    position: absolute;
+    font-size: 14px;
+    top: 36px;
+}
+
+.search-by {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
