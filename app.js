@@ -1,10 +1,10 @@
 // We are using an open API! No key needed!
 function getBreweryDataByName(searchQuery) {
-    fetch(`https://api.openbrewerydb.org/breweries/search?query=${searchQuery}`)
+    fetch(`https://api.openbrewerydb.org/breweries?by_name=${searchQuery}`)
         .then(response => response.json())
         .then((json) => {
             document.getElementById('results').innerHTML = "";
-            json.forEach((brewery, i) => {
+            json.forEach((brewery) => {
                 const breweryText = {
                     name: brewery.name,
                     state: brewery.state,
@@ -12,7 +12,8 @@ function getBreweryDataByName(searchQuery) {
                 }
                 displayResults(breweryText);
             })
-        });
+        })
+        .catch(err => console.error(err));
     
 }
 
@@ -29,7 +30,8 @@ function getBreweryDataByCity(searchQuery) {
                 }
                 displayResults(breweryText);
             })
-        });
+        })
+        .catch(err => console.error(err));
 }
 
 // Allows us to use the enter key to search a param
@@ -46,7 +48,7 @@ function getBreweryData() {
     const searchQuery = document.getElementById('brewery-serach-text').value;
     if (!searchQuery) {
         const errorMessage = document.getElementById('error-message');
-        errorMessage.innerText = "Please provide a search param"; 
+        return errorMessage.innerText = "Please provide a search param"; 
     } else {
         document.getElementById('error-message').innerHTML = "";
     }
