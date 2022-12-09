@@ -19,3 +19,43 @@
     gap: 10px;
     margin-bottom: 20px;
 }
+
+#one {
+    border: 12px solid orange;
+    background-color: blueviolet;
+}
+
+.one {
+    color: pink;
+    text-decoration: line-through;
+}
+
+.two {
+    background-color: black;
+    transition: 0.3s ease;
+}
+
+.two:hover {
+    color: red;
+}
+
+div {
+    color: limegreen;
+}
+
+.flex-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media (max-width: 800px) {
+    .one {
+        color: blue;
+    }
+    .flex-between {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}

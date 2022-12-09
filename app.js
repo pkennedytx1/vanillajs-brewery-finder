@@ -1,19 +1,20 @@
 // We are using an open API! No key needed!
-function getBreweryDataByName(searchQuery) {
-    fetch(`https://api.openbrewerydb.org/breweries/search?query=${searchQuery}`)
-        .then(response => response.json())
-        .then((json) => {
-            document.getElementById('results').innerHTML = "";
-            json.forEach((brewery, i) => {
-                const breweryText = {
-                    name: brewery.name,
-                    state: brewery.state,
-                    website_url: brewery.website_url,
-                }
-                displayResults(breweryText);
-            })
-        });
-    
+const getBreweryDataByName = async (searchQuery) => {
+    try {
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_name=${searchQuery}`)
+        const data = await response.json()
+        document.getElementById('results').innerHTML = "";
+        data.forEach((brewery, i) => {
+            const breweryText = {
+                name: brewery.name,
+                state: brewery.state,
+                website_url: brewery.website_url,
+            }
+            displayResults(breweryText);
+        })
+    } catch(err) {
+        console.error(err)
+    }
 }
 
 function getBreweryDataByCity(searchQuery) {
